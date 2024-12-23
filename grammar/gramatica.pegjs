@@ -4,7 +4,7 @@
 
     // import { identificadores } from '../index.js'
 
-    import { ids, usos} from '../index.js'
+    import { ids, usos, tokens} from '../index.js'
     import { ErrorReglas } from './error.js';
     import { errores } from '../index.js'
 
@@ -44,6 +44,7 @@ union
 
 expresion
   = label:$(etiqueta/varios)? _ expr:expresiones _ qty:$([?+*]/conteo)? {
+    tokens.push(new n.Expresion(expr, label, qty))
     return new n.Expresion(expr, label, qty);
   }
 
@@ -132,4 +133,4 @@ _ = (Comentarios /[ \t\n\r])*
 
 Comentarios = 
     "//" [^\n]* 
-    / "/*" (!"*/" .)* "*/"
+    / "/" (!"/" .)* "*/"
