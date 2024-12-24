@@ -41,8 +41,8 @@ function generarModuloFortran(lista) {
             let bottomValue = obj.bottom;
             let topValue = obj.top;
 
-            bottomValue = '${bottomValue}';
-            topValue = '${topValue}';
+            bottomValue = `'${bottomValue}'`;
+            topValue = `'${topValue}'`;
             lines.push(`        if (iachar(input(i:i)) >= iachar(${bottomValue}) .and. iachar(input(i:i)) <= iachar(${topValue})) then`);
             lines.push("            lexval = lexval // input(i:i)");
 
@@ -188,7 +188,7 @@ const analizar = () => {
         const cst = parse(entrada);
 
         if (errores.length > 0) {
-            salida.setValue(Error: ${errores[0].message});
+            salida.setValue(`Error: ${errores[0].message}`);
             return;
         } else {
             salida.setValue('Análisis Exitoso');
@@ -210,11 +210,11 @@ const analizar = () => {
         button.href = url;
     } catch (e) {
         if (e.location === undefined) {
-            salida.setValue(Error: ${e.message});
+            salida.setValue(`Error: ${e.message}`);
         } else {
             // Mostrar mensaje de error en el editor de salida
             salida.setValue(
-                Error: ${e.message}\nEn línea ${e.location.start.line} columna ${e.location.start.column}
+                `Error: ${e.message}\nEn línea ${e.location.start.line} columna ${e.location.start.column}`
             );
 
             // Resaltar el error en el editor de entrada

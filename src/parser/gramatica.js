@@ -9,7 +9,7 @@
 
     // import { identificadores } from '../index.js'
 
-    import { ids, usos} from '../index.js'
+    import { ids, usos, tokens} from '../index.js'
     import { ErrorReglas } from './error.js';
     import { errores } from '../index.js'
 
@@ -287,6 +287,7 @@ function peg$parse(input, options) {
     return new n.Union([expr, ...rest]);
   };
   var peg$f4 = function(label, expr, qty) {
+    tokens.push(new n.Expresion(expr, label, qty))
     return new n.Expresion(expr, label, qty);
   };
   var peg$f5 = function(id) {
